@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Google reCAPTCHA validation (if enabled)
-    $recaptcha_secret = 'YOUR_SECRET_KEY'; // Replace with your actual secret key
+    $recaptcha_secret = '6LcHsvUqAAAAALV9_MjCQ8BNaFbNxmrl1f-GH11R'; // Replace with your actual secret key
     if (isset($_POST['recaptcha-response'])) {
         $recaptcha_response = $_POST['recaptcha-response'];
         $verify_url = "https://www.google.com/recaptcha/api/siteverify?secret=$recaptcha_secret&response=$recaptcha_response";
