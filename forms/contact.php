@@ -1,39 +1,33 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $receiving_email_address = 'tasinwasi646@gmail.com';
+    $name    = strip_tags(trim($_POST["name"]));
+    $email   = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+    $subject = strip_tags(trim($_POST["subject"]));
+    $message = trim($_POST["message"]);
+    $captcha = $_POST["g-recaptcha-response"];
 
-    // Validate and sanitize input data
-    $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $subject = filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
-    $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
+    // Verify reCAPTCHA
+    $secretKey = "6LcHsvUqAAAAALV9_MjCQ8BNaFbNxmrl1f-GH11R";
+    $verifyURL = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha";
+    $response = file_get_contents($verifyURL);
+    $responseKeys = json_decode($response, true);
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        die("Invalid email format!");
+    if (!$responseKeys["success"]) {
+        echo "reCAPTCHA verification failed.";
+        exit;
     }
 
-    // Google reCAPTCHA validation (if enabled)
-    $recaptcha_secret = '6LcHsvUqAAAAALV9_MjCQ8BNaFbNxmrl1f-GH11R'; // Replace with your actual secret key
-    if (isset($_POST['recaptcha-response'])) {
-        $recaptcha_response = $_POST['recaptcha-response'];
-        $verify_url = "https://www.google.com/recaptcha/api/siteverify?secret=$recaptcha_secret&response=$recaptcha_response";
-        $verify_response = file_get_contents($verify_url);
-        $captcha_success = json_decode($verify_response);
-        if (!$captcha_success->success) {
-            die("reCAPTCHA verification failed!");
-        }
-    }
-
-    // Email Headers
-    $headers = "From: $name <$email>\r\n";
-    $headers .= "Reply-To: $email\r\n";
-    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    // Email recipient
+    $to = "tasinwasi646@gmail.com";
+    $headers = "From: $email\r\nReply-To: $email\r\nContent-Type: text/plain; charset=UTF-8\r\n";
 
     // Send email
-    if (mail($receiving_email_address, $subject, $message, $headers)) {
-        echo "OK";
+    if (mail($to, $subject, $message, $headers)) {
+        echo "Message sent successfully!";
     } else {
-        echo "Error sending email!";
+        echo "Error sending message.";
     }
+} else {
+    echo "Invalid request.";
 }
 ?>
