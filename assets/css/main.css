@@ -780,90 +780,129 @@ section,
 /*--------------------------------------------------------------
 # Portfolio Section
 --------------------------------------------------------------*/
-/*================== Portfolio ==================*/
-
-.portfolio__container {
-  overflow: initial;
+.portfolio .portfolio-filters {
+  padding: 0;
+  margin: 0 auto 20px auto;
+  list-style: none;
+  text-align: center;
 }
 
-.portfolio__content {
-  padding: 1.5rem;
-  background-color: var(--container-color);
-  border-radius: 1rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+.portfolio .portfolio-filters li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 10px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
 }
 
-.portfolio__content:hover {
-  transform: translateY(-10px);
-}
-
-.portfolio__img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 0.75rem;
-  margin-bottom: 1rem;
-  object-fit: cover;
-  justify-self: center;
-}
-
-.portfolio__title {
-  font-size: var(--h3-font-size);
+.portfolio .portfolio-filters li:hover,
+.portfolio .portfolio-filters li.filter-active {
+  color: var(--accent-color);
   font-weight: bold;
-  margin-bottom: var(--mb-0-5);
-  text-align: center;
+  background: rgba(0, 0, 0, 0.1);
 }
 
-.portfolio__description {
-  font-size: var(--small-font-size);
-  margin-bottom: var(--mb-0-75);
-  text-align: center;
-  color: var(--text-color-light);
+.portfolio .portfolio-filters li:first-child {
+  margin-left: 0;
 }
 
-.portfolio__button {
-  margin-top: 1rem;
-  display: inline-flex;
+.portfolio .portfolio-filters li:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 575px) {
+  .portfolio .portfolio-filters li {
+    font-size: 14px;
+    margin: 0 5px;
+    padding: 6px 10px;
+  }
+}
+
+.portfolio .portfolio-content {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio .portfolio-content img {
+  transition: all 0.3s ease-in-out;
+  max-width: 100%;
+  height: auto;
+}
+
+.portfolio .portfolio-content .portfolio-info {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  transition: all 0.3s ease-in-out;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
+  text-align: center;
 }
 
-.portfolio__button:hover .button__icon {
-  transform: translateX(0.25rem);
+.portfolio .portfolio-content .portfolio-info h4 {
+  font-size: 14px;
+  padding: 5px 10px;
+  font-weight: 400;
+  color: #ffffff;
+  background-color: var(--accent-color);
+  display: inline-block;
+  border-radius: 4px;
 }
 
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  content: "";
+.portfolio .portfolio-content .portfolio-info p {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: auto;
+  padding-bottom: 10px;
 }
 
-.swiper-portfolio-icon {
-  font-size: 2rem;
-  color: var(--first-color);
+.portfolio .portfolio-content .portfolio-info .preview-link,
+.portfolio .portfolio-content .portfolio-info .details-link {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 26px;
+  color: #fff;
+  transition: 0.3s;
+  line-height: 1.2;
 }
 
-.swiper-button-prev {
-  left: -0.5rem;
+.portfolio .portfolio-content .portfolio-info .preview-link:hover,
+.portfolio .portfolio-content .portfolio-info .details-link:hover {
+  color: var(--accent-color);
 }
 
-.swiper-button-next {
-  right: -0.5rem;
+.portfolio .portfolio-content .portfolio-info .details-link {
+  font-size: 34px;
+  line-height: 0;
 }
 
-.swiper-container-horizontal > .swiper-pagination-bullets {
-  bottom: -2.5rem;
+.portfolio .portfolio-content:hover .portfolio-info {
+  opacity: 1;
 }
 
-.swiper-pagination-bullets-active {
-  background-color: var(--first-color);
+.portfolio .portfolio-content:hover img {
+  transform: scale(1.1);
 }
 
-.swiper-button-next,
-.swiper-button-prev,
-.swiper-pagination-bullets {
-  outline: none;
+@media (max-width: 575px) {
+  .portfolio .portfolio-content .portfolio-info p {
+    font-size: 14px;
+  }
 }
-
 
 /*--------------------------------------------------------------
 # Services Section
