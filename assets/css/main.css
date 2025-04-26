@@ -787,22 +787,45 @@ section,
 }
 
 .portfolio__content {
-  padding: 0 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--container-color);
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.portfolio__content:hover {
+  transform: translateY(-10px);
 }
 
 .portfolio__img {
-  width: 310px;
-  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+  object-fit: cover;
   justify-self: center;
 }
 
 .portfolio__title {
   font-size: var(--h3-font-size);
+  font-weight: bold;
   margin-bottom: var(--mb-0-5);
+  text-align: center;
 }
 
 .portfolio__description {
+  font-size: var(--small-font-size);
   margin-bottom: var(--mb-0-75);
+  text-align: center;
+  color: var(--text-color-light);
+}
+
+.portfolio__button {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .portfolio__button:hover .button__icon {
