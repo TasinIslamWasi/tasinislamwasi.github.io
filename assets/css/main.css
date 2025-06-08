@@ -1215,13 +1215,15 @@ section,
   padding: 0;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
 }
+
 /* Divider between portfolio items */
 .custom-divider {
   border: none;
   border-top: 2px solid #ccc;
   width: 80%;
-  margin: 40px auto; /* adds vertical spacing too */
+  margin: 40px auto;
 }
+</style>
 /*--------------------------------------------------------------
 # Service Details Section
 --------------------------------------------------------------*/
