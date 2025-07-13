@@ -406,695 +406,222 @@
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Portfolio Section</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-        }
-
-        .portfolio.section {
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .portfolio.section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            z-index: -1;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #ffffff;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 800px;
-            margin: 0 auto;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            line-height: 1.6;
-        }
-
-        .portfolio-filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 50px;
-            list-style: none;
-            padding: 0;
-        }
-
-        .portfolio-filters li {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 12px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .portfolio-filters li:hover,
-        .portfolio-filters li.filter-active {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
-        }
-
-        .portfolio-item {
-            margin-bottom: 30px;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .portfolio-content {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 0;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            height: 100%;
-        }
-
-        .portfolio-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1;
-        }
-
-        .portfolio-content:hover::before {
-            opacity: 1;
-        }
-
-        .portfolio-content:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
-        }
-
-        .portfolio-content img,
-        .portfolio-content video {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 20px 20px 0 0;
-            transition: transform 0.4s ease;
-        }
-
-        .portfolio-content:hover img,
-        .portfolio-content:hover video {
-            transform: scale(1.05);
-        }
-
-        .video-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px 20px 0 0;
-        }
-
-        .play-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 70px;
-            height: 70px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 3;
-            cursor: pointer;
-        }
-
-        .portfolio-content:hover .play-overlay {
-            opacity: 1;
-        }
-
-        .play-overlay i {
-            color: #ff6b6b;
-            font-size: 1.5rem;
-            margin-left: 3px;
-        }
-
-        .portfolio-info {
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(5px);
-            position: relative;
-            z-index: 2;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .portfolio-info h4 {
-            color: #ffffff;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            letter-spacing: 0.5px;
-        }
-
-        .portfolio-info p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            line-height: 1.6;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-            flex-grow: 1;
-        }
-
-        .portfolio-links {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            margin-top: auto;
-        }
-
-        .preview-link,
-        .details-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .details-link {
-            background: linear-gradient(135deg, #4ecdc4, #44a08d);
-            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
-        }
-
-        .preview-link::before,
-        .details-link::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.3s ease;
-        }
-
-        .preview-link:hover::before,
-        .details-link:hover::before {
-            width: 100%;
-            height: 100%;
-        }
-
-        .preview-link:hover,
-        .details-link:hover {
-            transform: scale(1.1);
-            color: white;
-        }
-
-        .preview-link:hover {
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
-        }
-
-        .details-link:hover {
-            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.6);
-        }
-
-        .preview-link i,
-        .details-link i {
-            position: relative;
-            z-index: 1;
-            transition: transform 0.3s ease;
-        }
-
-        .preview-link:hover i,
-        .details-link:hover i {
-            transform: scale(1.2);
-        }
-
-        .tech-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            z-index: 4;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .filter-app .tech-badge { background: rgba(52, 152, 219, 0.3); }
-        .filter-product .tech-badge { background: rgba(46, 204, 113, 0.3); }
-        .filter-branding .tech-badge { background: rgba(231, 76, 60, 0.3); }
-        .filter-books .tech-badge { background: rgba(155, 89, 182, 0.3); }
-
-        @media (max-width: 768px) {
-            .section-title h2 {
-                font-size: 2.5rem;
-            }
-            
-            .section-title p {
-                font-size: 1rem;
-                padding: 0 20px;
-            }
-            
-            .portfolio-filters {
-                gap: 10px;
-            }
-            
-            .portfolio-filters li {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-            
-            .portfolio-content img,
-            .portfolio-content video {
-                height: 200px;
-            }
-            
-            .portfolio-info {
-                padding: 20px;
-            }
-            
-            .portfolio-info h4 {
-                font-size: 1.2rem;
-            }
-        }
-
-        /* Isotope animations */
-        .isotope-item {
-            transition: transform 0.4s, opacity 0.4s;
-        }
-
-        .isotope-item.isotope-hidden {
-            opacity: 0;
-            transform: scale(0.8);
-        }
-    </style>
-</head>
-<body>
+    
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio section light-background">
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Portfolio</h2>
-            <p><b><i>"Experience seamless convenience with our services. We ensure efficiency, reliability, and satisfaction, eliminating any hassle. Trust us for a smooth and effortless journey."</i></b></p>
-        </div><!-- End Section Title -->
 
-        <div class="container">
-            <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Portfolio</h2>
+        <p><b><i>"Experience seamless convenience with our services. We ensure efficiency, reliability, and satisfaction, eliminating any hassle. Trust us for a smooth and effortless journey."</i></b></p>
+      </div><!-- End Section Title -->
 
-                <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-                    <li data-filter="*" class="filter-active">All</li>
-                    <li data-filter=".filter-app">App</li>
-                    <li data-filter=".filter-product">Product</li>
-                    <li data-filter=".filter-branding">Branding</li>
-                    <li data-filter=".filter-books">Books</li>
-                </ul><!-- End Portfolio Filters -->
+      <div class="container">
 
-                <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
-                    <!-- Connection Diagram -->
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                        <div class="portfolio-content h-100">
-                            <div class="tech-badge">Automation</div>
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSJsaW5lYXItZ3JhZGllbnQoNDVkZWcsICMzNDk4ZGIsICMyOTgwYjkpIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2Ij5Db25uZWN0aW9uIERpYWdyYW08L3RleHQ+Cjwvc3ZnPg==" class="img-fluid" alt="Connection Diagram">
-                            <div class="portfolio-info">
-                                <h4>Connection Diagram</h4>
-                                <p>A simple automation connection diagram showcasing electrical connections and control systems</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/app-1.jpg" title="Connection Diagram" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
+          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-app">App</li>
+            <li data-filter=".filter-product">Product</li>
+            <li data-filter=".filter-branding">Branding</li>
+            <li data-filter=".filter-books">Books</li>
+          </ul><!-- End Portfolio Filters -->
 
-                    <!-- 3D Modeling -->
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                        <div class="portfolio-content h-100">
-                            <div class="tech-badge">3D Design</div>
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSJsaW5lYXItZ3JhZGllbnQoNDVkZWcsICMyZWNjNzEsICMyN2FlNjApIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2Ij4zRCBNb2RlbGluZzwvdGV4dD4KPC9zdmc+" class="img-fluid" alt="3D Modeling">
-                            <div class="portfolio-info">
-                                <h4>3D Modeling</h4>
-                                <p>Factory power system demonstration 3D model with detailed visualization and interactive components</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/product-1.jpg" title="3D Modeling" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
-                    <!-- LED Screen Video -->
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                        <div class="portfolio-content h-100">
-                            <div class="tech-badge">LED Tech</div>
-                            <div class="video-container">
-                                <video class="img-fluid" controls poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSJsaW5lYXItZ3JhZGllbnQoNDVkZWcsICNmZjZiNmIsICNlZTVhMjQpIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2Ij5MRUQgU2NyZWVuIERpc3BsYXk8L3RleHQ+Cjwvc3ZnPg==">
-                                    <source src="assets/video/branding-1.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                                <div class="play-overlay">
-                                    <i class="bi bi-play-fill"></i>
-                                </div>
-                            </div>
-                            <div class="portfolio-info">
-                                <h4>LED Screen Display</h4>
-                                <p>Neo Pixel LED effect light display with dynamic color patterns and interactive visual effects</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/video/branding-1.mp4" title="LED Screen Display" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-play-circle"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Connection Diagram</h4>
+                  <p>A simple automation connection diagram</p>
+                  <a href="assets/img/portfolio/app-1.jpg" title="Connection Diagram" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
 
-                    <!-- Soap Manufacturing -->
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                        <div class="portfolio-content h-100">
-                            <div class="tech-badge">Industrial</div>
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSJsaW5lYXItZ3JhZGllbnQoNDVkZWcsICM5YjU5YjYsICM4ZTQ0YWQpIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij5Tb2FwIE1hbnVmYWN0dXJpbmc8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid" alt="Soap Manufacturing">
-                            <div class="portfolio-info">
-                                <h4>Soap Manufacturing Automation</h4>
-                                <p>Complete soap factory manufacturing unit automation project with process control and monitoring systems</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/app-2.jpg" title="Soap Manufacturing Automation" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
 
-                    <!-- CRUD Web Application -->
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-                        <div class="portfolio-content h-100">
-                            <div class="tech-badge">Web App</div>
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSJsaW5lYXItZ3JhZGllbnQoNDVkZWcsICNmMzlmODYsICNmMDYyOTIpIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2Ij5DUlVEIFdlYiBBcHA8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid" alt="CRUD Web Application">
-                            <div class="portfolio-info">
-                                <h4>CRUD Web Application</h4>
-                                <p>Full-featured web application for data management with export capabilities to PDF, Word, and Excel formats</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/books-1.jpg" title="CRUD Web Application" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
 
-                    <!-- Branding 2 -->
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                        <div class="portfolio-content h-100">
-                            <div class="tech-badge">Creative</div>
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSJsaW5lYXItZ3JhZGllbnQoNDVkZWcsICNmZmE3MjYsICNmZjczMDAp/IHRQiTzwvc3ZnPg==" class="img-fluid" alt="Branding 2">
-                            <div class="portfolio-info">
-                                <h4>Brand Identity Design</h4>
-                                <p>Creative branding solutions with modern visual identity and comprehensive brand guidelines</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/branding-2.jpg" title="Brand Identity Design" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
+            
+            
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/product-1.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>3D Modeling</h4>
+                  <p>FACTORY POWER SYSTEM DEMOSTRATION 3D MODEL</p>
+                  <a href="assets/img/portfolio/product-1.jpg" title="3D Modeling" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
 
-                    <!-- Books 2 -->
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-                        <div class="portfolio-content h-100">
-                            <div class="tech-badge">Publishing</div>
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSJsaW5lYXItZ3JhZGllbnQoNDVkZWcsICM2NjdlZWEsICM3NjRiYTIpIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2Ij5EaWdpdGFsIFB1Ymxpc2hpbmc8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid" alt="Books 2">
-                            <div class="portfolio-info">
-                                <h4>Digital Publishing Platform</h4>
-                                <p>Comprehensive digital publishing solution with content management and distribution capabilities</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/books-2.jpg" title="Digital Publishing Platform" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
 
-                    <!-- App 3 -->
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                        <div class="portfolio-content h-100">
-                            <div class="tech-badge">Mobile</div>
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSJsaW5lYXItZ3JhZGllbnQoNDVkZWcsICM0ZWNkYzQsICM0NGEwOGQpIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2Ij5Nb2JpbGUgQXBwbGljYXRpb248L3RleHQ+Cjwvc3ZnPg==" class="img-fluid" alt="App 3">
-                            <div class="portfolio-info">
-                                <h4>Mobile Application</h4>
-                                <p>Cross-platform mobile application with intuitive user interface and seamless performance</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/app-3.jpg" title="Mobile Application" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
 
-                    <!-- Product 3 -->
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                        <div class="portfolio-content h-100">
-                            <div class="tech-badge">Innovation</div>
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSJsaW5lYXItZ3JhZGllbnQoNDVkZWcsICNmZjc5NDMsICNmZjU1MjIpIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2Ij5Qcm9kdWN0IERlc2lnbjwvdGV4dD4KPC9zdmc+" class="img-fluid" alt="Product 3">
-                            <div class="portfolio-info">
-                                <h4>Product Design</h4>
-                                <p>Innovative product design with user-centered approach and cutting-edge technology integration</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/product-3.jpg" title="Product Design" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
 
-                    <!-- Branding 3 -->
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                        <div class="portfolio-content h-100">
-                            <div class="tech-badge">Visual</div>
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSJsaW5lYXItZ3JhZGllbnQoNDVkZWcsICNhZGNkZTcsICM4ZGQyZWQpIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2Ij5WaXN1YWwgSWRlbnRpdHk8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid" alt="Branding 3">
-                            <div class="portfolio-info">
-                                <h4>Visual Identity</h4>
-                                <p>Comprehensive visual identity system with logo design, color palette, and brand guidelines</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/branding-3.jpg" title="Visual Identity" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
 
-                    <!-- Books 3 -->
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-                        <div class="portfolio-content h-100">
-                            <div class="tech-badge">Editorial</div>
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSJsaW5lYXItZ3JhZGllbnQoNDVkZWcsICNmZmJhMDgsICNmZjk1MDAp/IHRQiTzwvc3ZnPg==" class="img-fluid" alt="Books 3">
-                            <div class="portfolio-info">
-                                <h4>Editorial Design</h4>
-                                <p>Professional editorial design with typography, layout, and content organization for publications</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/books-3.jpg" title="Editorial Design" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                                    <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
 
-                </div><!-- End Portfolio Container -->
+            
+          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+               <div class="portfolio-content h-100">
+                   <!-- Embed a video here -->
+               <video class="img-fluid" controls>
+               <source src="assets/video/branding-1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+               </video>
+
+               <div class="portfolio-info">
+               <h4>LED screen</h4>
+               <p>Neo Pixel Led Effect light display</p>
+               <!-- Optional: Update the preview-link to play the video in a lightbox -->
+               <a href="assets/video/branding-1.mp4" title="LED screen" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-play-circle"></i></a>
+
+              </div>
             </div>
+          </div>
+
+
+
+
+            
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/app-2.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Soap manufacturing automation unit</h4>
+                  <p>This is a soap factory manufacturing unit automation project demonstration.</p>
+                  <a href="assets/img/portfolio/app-2.jpg" title="Soap manufacturing automation unit" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+
+
+
+            
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/books-1.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>CRUD web application</h4>
+                  <p>This is a sample project of my CRUD web application, where you can enter data and easily download it in various formats like PDF, Word, or Excel.</p>
+                  <a href="assets/img/portfolio/books-1.jpg" title="CRUD web application" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+
+
+
+
+            
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/branding-2.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Branding 2</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="assets/img/portfolio/branding-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+
+
+
+            
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/books-2.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Books 2</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="assets/img/portfolio/books-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+
+
+
+
+            
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/app-3.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>App 3</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="assets/img/portfolio/app-3.jpg" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+
+
+
+
+            
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/product-3.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Product 3</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="assets/img/portfolio/product-3.jpg" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+
+
+
+
+            
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/branding-3.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Branding 3</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="assets/img/portfolio/branding-3.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+
+
+
+
+            
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/books-3.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Books 3</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="assets/img/portfolio/books-3.jpg" title="Branding 3" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+          </div><!-- End Portfolio Container -->
+
         </div>
+
+      </div>
+
     </section><!-- /Portfolio Section -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            easing: 'ease-in-out',
-            once: true,
-            mirror: false
-        });
-
-        // Portfolio filtering
-        document.addEventListener('DOMContentLoaded', function() {
-            const portfolioContainer = document.querySelector('.isotope-container');
-            const portfolioFilters = document.querySelectorAll('.portfolio-filters li');
-            
-            // Initialize Isotope
-            const iso = new Isotope(portfolioContainer, {
-                itemSelector: '.portfolio-item',
-                layoutMode: 'fitRows',
-                transitionDuration: '0.4s'
-            });
-
-            // Filter functionality
-            portfolioFilters.forEach(filter => {
-                filter.addEventListener('click', function() {
-                    // Remove active class from all filters
-                    portfolioFilters.forEach(f => f.classList.remove('filter-active'));
-                    // Add active class to clicked filter
-                    this.classList.add('filter-active');
-                    
-                    // Get filter value
-                    const filterValue = this.getAttribute('data-filter');
-                    
-                    // Filter items
-                    iso.arrange({
-                        filter: filterValue === '*' ? '*' : filterValue
-                    });
-                });
-            });
-
-            // Video interactions
-            const videos = document.querySelectorAll('video');
-            const playOverlays = document.querySelectorAll('.play-overlay');
-            
-            videos.forEach((video, index) => {
-                const overlay = playOverlays[index];
-                if (overlay) {
-                    // Play video when overlay is clicked
-                    overlay.addEventListener('click', function() {
-                        if (video.paused) {
-                            video.play();
-                            overlay.style.opacity = '0';
-                        }
-                    });
-                    
-                    // Show overlay when video is paused
-                    video.addEventListener('pause', function() {
-                        overlay.style.opacity = '1';
-                    });
-                    
-                    // Hide overlay when video is playing
-                    video.addEventListener('play', function() {
-                        overlay.style.opacity = '0';
-                    });
-                }
-            });
-
-            // Smooth hover effects
-            const portfolioItems = document.querySelectorAll('.portfolio-content');
-            portfolioItems.forEach(item => {
-                item.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-10px) scale(1.02)';
-                });
-                
-                item.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-
-            // Staggered animation for portfolio items
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }, index * 100);
-                    }
-                });
-            }, observerOptions);
-
-            portfolioItems.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(30px)';
-                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(item);
-            });
-        });
-    </script>
-</body>
-</html>
 
 
 
