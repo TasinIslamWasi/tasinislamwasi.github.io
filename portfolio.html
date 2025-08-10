@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <!-- Vendor CSS Files from index.html -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File from index.html -->
+    <link href="assets/css/main.css" rel="stylesheet">
+
+    <style>
+        body {
+            color: #FFFFFF;
+        }
+        .project-item {
+            margin-bottom: 30px; /* Space between project items */
+        }
+        .project-box {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px; /* Rounded corners */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: #6c757d;
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden; /* Hide overflow for zoom effect */
+        }
+        .project-box.aspect-9-16 {
+            padding-bottom: 177.77%; /* 9:16 Aspect Ratio */
+        }
+        .project-box-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .project-box img, .project-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the entire box is covered */
+            transition: transform 0.3s ease; /* Smooth transition for zoom */
+        }
+        .project-box:hover img, .project-box:hover video {
+            transform: scale(1.1); /* Zoom effect on hover */
+        }
+        .project-info {
+            text-align: center;
+            margin-top: 10px; /* Space between box and text */
+        }
+        .project-info h4,
+        .project-info p,
+        h1 {
+            color: #FFFFFF;
+        }
+        .project-info h4 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        .project-info p {
+            font-size: 0.9em;
+        }
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .project-box:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        .portfolio-overlay .preview-link {
+            color: #fff;
+            font-size: 2.5em;
+            line-height: 0;
+            transition: 0.3s;
+        }
+        .portfolio-overlay .preview-link:hover {
+            color: #007bff; /* Change color on hover */
+        }
+        .footer-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .footer-buttons .btn {
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .footer-buttons .btn-primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        .footer-buttons .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body style="background-color: #1C1515;">
+    <div class="container mt-5" style="text-align: center;">
+        <h1 class="text-center mb-4" style="background-color: #706D6D; padding: 10px 20px; border-radius: 5px; display: inline-block;">PORTFOLIO</h1>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12 project-item">
+                <div class="project-box">
+                    <div class="project-box-content">
+                        <img src="assets/img/portfolio/app-1.jpg" alt="Connection Diagram">
+                    </div>
+                    <div class="portfolio-overlay">
+                        <a href="assets/img/portfolio/app-1.jpg" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h4>Connection Diagram</h4>
+                    <p>A simple automation connection diagram</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 project-item">
+                <div class="project-box">
+                    <div class="project-box-content">
+                        <img src="assets/img/portfolio/product-1.jpg" alt="3D Modeling">
+                    </div>
+                    <div class="portfolio-overlay">
+                        <a href="assets/img/portfolio/product-1.jpg" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h4>3D Modeling</h4>
+                    <p>FACTORY POWER SYSTEM DEMOSTRATION 3D MODEL</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 project-item">
+                <div class="project-box">
+                    <div class="project-box-content">
+                        <img src="assets/img/portfolio/app-2.jpg" alt="Soap manufacturing automation unit">
+                    </div>
+                    <div class="portfolio-overlay">
+                        <a href="assets/img/portfolio/app-2.jpg" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h4>Soap manufacturing automation unit</h4>
+                    <p>This is a soap factory manufacturing unit automation project demonstration.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 project-item">
+                <div class="project-box">
+                    <div class="project-box-content">
+                        <img src="assets/img/poultry/Tasin poultry 1.jpg" alt="Poultry Farm Automation">
+                    </div>
+                    <div class="portfolio-overlay">
+                        <a href="assets/img/poultry/Tasin poultry 1.jpg" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h4>Poultry Farm Automation</h4>
+                    <p>An automated monitoring system for poultry farms</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 project-item">
+                <div class="project-box">
+                    <div class="project-box-content">
+                        <video controls>
+                            <source src="assets/video/branding-1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <a href="assets/video/branding-1.mp4" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h4>LED screen</h4>
+                    <p>Neo Pixel Led Effect light display</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 project-item">
+                <div class="project-box">
+                    <div class="project-box-content">
+                        <img src="assets/img/cad/f1p1.png" alt="Autocad 2D floor electrical layout.">
+                    </div>
+                    <div class="portfolio-overlay">
+                        <a href="assets/img/cad/f1p1.png" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h4>Autocad 2D floor electrical layout.</h4>
+                    <p>An electrical layout design made in Autocad.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-buttons">
+            <a href="index.html" class="btn btn-secondary">Go Back</a>
+            <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="btn btn-primary">Top</button>
+        </div>
+    </div>
+
+    <!-- Vendor JS Files from index.html -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/typed.js/typed.umd.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File from index.html -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        // Initialize GLightbox
+        const lightbox = GLightbox({
+            selector: '.glightbox'
+        });
+    </script>
+</body>
+</html>
