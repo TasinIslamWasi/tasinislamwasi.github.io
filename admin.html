@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Page</title>
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+
+<header id="admin-header" class="admin-header">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <button id="sidebar-toggle" class="btn btn-dark me-3">
+        <i class="bi bi-list"></i>
+      </button>
+      <h1 class="logo me-auto"><a href="index.html">Tasin Islam Wasi</a></h1>
+    </div>
+    <a href="index.html" class="btn btn-danger">Logout</a>
+  </div>
+</header>
+
+<nav id="admin-navmenu" class="navmenu admin-navmenu">
+  <button id="close-menu" class="btn btn-light close-button">&times;</button>
+  <ul>
+    <li><a href="#dashboard"><i class="bi bi-house navicon"></i> Dashboard</a></li>
+    <li><a href="#stats"><i class="bi bi-bar-chart navicon"></i> Visitor Stats</a></li>
+    <li><a href="#users"><i class="bi bi-people navicon"></i> Users</a></li>
+    <li><a href="#settings"><i class="bi bi-gear navicon"></i> Settings</a></li>
+    <li><a href="#profile"><i class="bi bi-person-circle navicon"></i> Profile</a></li>
+    <li><a href="#messages"><i class="bi bi-envelope navicon"></i> Messages</a></li>
+    <li><a href="#products"><i class="bi bi-box-seam navicon"></i> Products</a></li>
+    <li><a href="#orders"><i class="bi bi-card-checklist navicon"></i> Orders</a></li>
+    <li><a href="#reports"><i class="bi bi-file-earmark-bar-graph navicon"></i> Reports</a></li>
+    <li><a href="#support"><i class="bi bi-question-circle navicon"></i> Support</a></li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <main class="col-12 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+      </div>
+      
+      <!-- Visitor Stats Section -->
+      <section class="visitor-info section-bg">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-title">
+            <h2>Visitor Statistics</h2>
+            <p>Here you can see the visitor statistics for this website.</p>
+          </div>
+  
+          <div class="row justify-content-center text-center">
+  
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="info-box card h-100">
+                <div class="card-body">
+                  <div class="icon-box">
+                    <i class="bi bi-people-fill"></i>
+                  </div>
+                  <h3 class="card-title">Total Visitors</h3>
+                  <p id="total-visitors" class="display-4">0</p>
+                  <button id="reset-total-visitors" class="btn btn-danger btn-sm mt-3">Reset</button>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="info-box card h-100">
+                <div class="card-body">
+                  <div class="icon-box">
+                    <i class="bi bi-calendar-day"></i>
+                  </div>
+                  <h3 class="card-title">Today's Visitors</h3>
+                  <p id="today-visitors" class="display-4">0</p>
+                  <button id="reset-today-visitors" class="btn btn-danger btn-sm mt-3">Reset</button>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="info-box card h-100">
+                <div class="card-body">
+                  <div class="icon-box">
+                    <i class="bi bi-broadcast"></i>
+                  </div>
+                  <h3 class="card-title">Live Visitors</h3>
+                  <p id="live-visitors" class="display-4">0</p>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+  
+          <div class="row justify-content-center mt-5">
+            <div class="col-lg-8">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Unique Visitor Information</h3>
+                </div>
+                <div class="card-body">
+                  <p><strong>Your Unique Visitor ID:</strong> <span id="unique-visitor-id"></span></p>
+                  <h5>Unique Visitor IDs (from this browser):</h5>
+                  <ul id="unique-visitor-list" class="list-group">
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    
+
+    function updateVisitorCounts() {
+      // --- Total Visitors ---
+      let totalVisitors = localStorage.getItem("totalVisitors") || 0;
+      document.getElementById("total-visitors").textContent = totalVisitors;
+
+      // --- Today's Visitors ---
+      let todayVisitors = localStorage.getItem("todayVisitors") || 0;
+      document.getElementById("today-visitors").textContent = todayVisitors;
+
+      // --- Live Visitors (Simulation) ---
+      let liveVisitors = JSON.parse(localStorage.getItem("liveVisitors")) || [];
+      document.getElementById("live-visitors").textContent = liveVisitors.length;
+
+      // --- Unique Visitors ---
+      let uniqueVisitorId = localStorage.getItem("uniqueVisitorId") || "Not yet assigned";
+      document.getElementById("unique-visitor-id").textContent = uniqueVisitorId;
+
+      let uniqueVisitorIds = JSON.parse(localStorage.getItem("uniqueVisitorIds")) || [];
+      const uniqueVisitorList = document.getElementById("unique-visitor-list");
+      uniqueVisitorList.innerHTML = ""; // Clear the list
+      uniqueVisitorIds.forEach(id => {
+        const listItem = document.createElement("li");
+        listItem.className = "list-group-item";
+        listItem.textContent = id;
+        uniqueVisitorList.appendChild(listItem);
+      });
+    }
+
+    // Update the counts every second to keep the "live" count somewhat fresh
+    setInterval(updateVisitorCounts, 1000);
+    updateVisitorCounts(); // Initial update
+
+    // --- Reset Buttons ---
+    document.getElementById("reset-total-visitors").addEventListener("click", function() {
+      localStorage.removeItem("totalVisitors");
+      localStorage.removeItem("uniqueVisitorIds");
+      localStorage.removeItem("uniqueVisitorId");
+      updateVisitorCounts();
+    });
+
+    document.getElementById("reset-today-visitors").addEventListener("click", function() {
+      localStorage.removeItem("todayVisitors");
+      localStorage.removeItem("lastVisitDate");
+      updateVisitorCounts();
+    });
+
+    document.getElementById("sidebar-toggle").addEventListener("click", function() {
+      document.getElementById("admin-navmenu").classList.toggle("open");
+    });
+
+    document.getElementById("close-menu").addEventListener("click", function() {
+      document.getElementById("admin-navmenu").classList.remove("open");
+    });
+  });
+</script>
+
+</body>
+</html>
