@@ -1,0 +1,247 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IoT Web Portfolio</title>
+  <link rel="icon" href="static/images/tasin-favicon.png" type="image/png" />
+  <link rel="stylesheet" href="static/css/styles.css" />
+</head>
+<body class="preload">
+  <div class="storm-overlay" aria-hidden="true">
+    <div class="storm-flash"></div>
+    <div class="storm-bolt"></div>
+    <div class="storm-bolt bolt-2"></div>
+  </div>
+  <canvas class="rain-canvas" aria-hidden="true"></canvas>
+  <div class="bg-grid"></div>
+  <header class="nav">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <span class="logo-text" id="profileName">IoT Developer</span>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <div class="dropdown">
+        <button class="dropbtn" type="button">More</button>
+        <div class="dropdown-content">
+          <a href="#activities">Activities</a>
+          <a href="#languages">Languages</a>
+          <a href="web pages/products.html">Products</a>
+          <div class="dropdown-sub">
+            <button class="dropbtn subbtn" type="button">Games</button>
+            <div class="dropdown-subcontent">
+              <a href="web pages/games/snake games/index.html">Snake Games</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#contact" class="cta">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="about">
+      <div class="hero-left">
+        <div class="pill">IoT Dev Studio</div>
+        <h1 id="profileTitle">IoT and Embedded Systems Developer</h1>
+        <p class="lead" id="profileSummary"></p>
+        <div class="avatar-frame">
+          <img src="static/images/Tasin Profile.jpg" alt="Profile portrait" class="avatar" />
+        </div>
+        <div class="hero-actions">
+          <a class="btn primary" id="cvLink" href="#" target="_blank" rel="noopener">Download CV</a>
+          <a class="btn ghost" href="#projects">Explore Projects</a>
+        </div>
+        <div class="social-links" id="socialLinks"></div>
+        <div class="hero-meta" id="heroMeta"></div>
+      </div>
+      <div class="hero-right">
+        <div class="panel">
+          <div class="panel-header">
+            <span>System Dashboard</span>
+            <span class="status">Online</span>
+          </div>
+          <div class="panel-grid">
+            <div class="stat">
+              <div class="stat-label">Projects</div>
+              <div class="stat-value" id="statProjects">0</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Experience</div>
+              <div class="stat-value" id="statExperience">0</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Skills</div>
+              <div class="stat-value" id="statSkills">0</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Focus</div>
+              <div class="stat-value">IoT</div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <div class="signal"></div>
+            <span>Live portfolio service ready for collaboration</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-title">
+        <h2>Skills and Tools</h2>
+        <p>Focused on embedded systems, automation, and IoT deployments.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="card">
+          <h3>Core</h3>
+          <div class="chips" id="skillsCore"></div>
+        </div>
+        <div class="card">
+          <h3>Software</h3>
+          <div class="chips" id="skillsSoftware"></div>
+        </div>
+        <div class="card">
+          <h3>Focus Areas</h3>
+          <div class="chips" id="skillsFocus"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-title">
+        <h2>Project Explorer</h2>
+        <p>Search and filter live project logs like a control console.</p>
+      </div>
+      <div class="project-controls">
+        <input id="projectSearch" type="text" placeholder="Search projects by name or keyword" />
+        <div class="mini">Try keywords like IoT, automation, energy, traffic.</div>
+      </div>
+      <div class="grid" id="projectsGrid"></div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="section-title">
+        <h2>Experience</h2>
+        <p>Hands on work in industrial automation and machine learning systems.</p>
+      </div>
+      <div class="timeline" id="experienceTimeline"></div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="section-title">
+        <h2>Education</h2>
+        <p>Academic foundation in electrical and electronic engineering.</p>
+      </div>
+      <div class="grid" id="educationGrid"></div>
+    </section>
+
+    <section class="section" id="activities">
+      <div class="section-title">
+        <h2>Activities and Events</h2>
+        <p>Continuous learning through workshops, tours, and expos.</p>
+      </div>
+      <div class="grid" id="activitiesGrid"></div>
+    </section>
+
+    <section class="section" id="extracurricular">
+      <div class="section-title">
+        <h2>Extracurricular Activities</h2>
+        <p>A collection of my extracurricular activities and projects.</p>
+      </div>
+      <div class="grid" id="extracurricularGrid"></div>
+    </section>
+
+    <section class="section" id="languages">
+      <div class="section-title">
+        <h2>Languages and Interests</h2>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <h3>Languages</h3>
+          <div class="list" id="languagesList"></div>
+        </div>
+        <div class="card">
+          <h3>Interests</h3>
+          <div class="list" id="hobbiesList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Open to roles in IoT, automation, and embedded systems.</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-info">
+          <a class="contact-line link-line" id="contactEmailLink" href="#">
+            <span class="icon">✉</span>
+            <span>Email</span>
+            <span id="contactEmail"></span>
+          </a>
+          <a class="contact-line link-line" id="contactPhoneLink" href="#">
+            <span class="icon">☎</span>
+            <span>Phone</span>
+            <span id="contactPhone"></span>
+          </a>
+          <a class="contact-line link-line" id="contactWebsiteLink" href="#" target="_blank" rel="noopener">
+            <span class="icon">⌁</span>
+            <span>Website</span>
+            <span id="contactWebsite"></span>
+          </a>
+          <div class="contact-line link-line">
+            <span class="icon">⌂</span>
+            <span>Address</span>
+            <span>Mirpur 10, Dhaka 1216</span>
+          </div>
+          <div class="contact-actions">
+            <a class="btn primary" id="emailLink" href="#">Send Email</a>
+            <a class="btn ghost" id="cvLinkFooter" href="#" target="_blank" rel="noopener">View CV</a>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <div class="form-title">Send a Message</div>
+          <div class="form-grid">
+            <input type="text" name="name" placeholder="Your name" required />
+            <input type="email" name="email" placeholder="Your email" required />
+          </div>
+          <input type="text" name="subject" placeholder="Subject" required />
+          <textarea name="message" rows="4" placeholder="Write your message" required></textarea>
+          <button class="btn primary" type="submit">Send Message</button>
+        </form>
+        <div class="map-card">
+          <div class="map-title">Find Me</div>
+          <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps?q=23.8066282,90.368891&t=k&z=17&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+            title="Location map"
+          ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 Tasin Islam Wasi. All rights reserved.</span>
+    <span>Developed by <a class="link" href="https://www.linkedin.com/in/tasinislamwasi/" target="_blank" rel="noopener">Tasin Islam Wasi</a></span>
+  </footer>
+
+  <script id="profileData" type="application/json">{"name": "Tasin Islam Wasi", "title": "Embedded Systems Engineer & Web Developer", "location": "Mirpur, Dhaka, Bangladesh", "email": "tasinwasi646@gmail.com", "phone": "+880 18 2860 1634", "website": "tasinislamwasi.github.io", "summary": "Passionate Electrical and Electronics Engineer with expertise in Embedded Systems, IoT, Web & Software Development. Dedicated to creating innovative and efficient technology solutions.", "cv_file": "Tasin Islam Wasi Europass CV.pdf", "socials": [{"label": "X", "url": "https://x.com/Tasinwasi"}, {"label": "Facebook", "url": "https://www.facebook.com/tasin.wasi.5/"}, {"label": "Instagram", "url": "https://www.instagram.com/tasin_islam_wasi/"}, {"label": "WhatsApp", "url": "https://wa.me/+8801828601634"}, {"label": "LinkedIn", "url": "https://www.linkedin.com/in/tasinislamwasi/"}, {"label": "GitHub", "url": "https://github.com/TasinIslamWasi"}, {"label": "UpWork", "url": "https://www.upwork.com/freelancers/~01ed16e64d5cf7e98d"}], "experience": [{"role": "Machine Learning Engineer Intern", "company": "ACI Ltd", "location": "Dhaka, Bangladesh", "start": "2023-12-01", "end": "2024-03-31", "url": "https://www.aci-bd.com/", "details": ["Assisted in troubleshooting, repairing, and maintaining electrical and electronic systems", "Developed and tested embedded controllers for automation and power management", "Performed circuit diagnostics, PCB analysis, and equipment calibration", "Prepared technical documentation and performance reports"]}, {"role": "Assistant Engineer", "company": "Believer Power and Engineering Ltd", "location": "Dhaka, Bangladesh", "start": "2022-06-01", "end": "2023-08-31", "url": "https://www.facebook.com/BelieverPowerEngineering/", "details": ["Installed and configured industrial devices such as elevators and generators", "Handled troubleshooting and maintenance procedures", "Coordinated projects and ensured timely equipment setup"]}], "projects": [{"name": "Smart Poultry Farm Monitoring System", "type": "Internship", "dates": "2024-03-02 to 2024-03-28", "description": "IoT device for 24 7 farm surveillance. Senses ammonia and toxic gases, temperature, and includes vision monitoring. Enables remote control of pumps, lighting, and fans. Streams real time data to mobile for decision making."}, {"name": "Soap Manufacturing Automation Unit", "type": "Internship", "dates": "2024-02-05 to 2024-02-15", "description": "Automated miniature soap factory with dispensing, conveying, and processing stages. Uses hoppers, sensors, motor drivers, and labeled control wiring to show an industrial automation pipeline."}, {"name": "Smart Traffic Management System Using Piezo Electric", "type": "Final Year Project", "dates": "2023-03-03 to 2023-04-18", "description": "Piezoelectric sensors embedded in road surface detect pressure and vibration. Arduino processes signals to optimize traffic light timing. System harvests energy from sensors for self sustaining operation."}, {"name": "Energy Harvesting from Footsteps", "type": "Project", "dates": "2022-12-06 to 2022-12-08", "description": "Piezoelectric tiles generate energy from footsteps and store it in batteries for low power devices and urban infrastructure."}, {"name": "Smart Traffic Light Control System", "type": "Project", "dates": "2022-11-01 to 2022-11-12", "description": "Sensor driven system that adapts traffic light cycles based on real time vehicle density to reduce congestion and energy usage."}, {"name": "IoT Based Weather Monitoring System", "type": "Project", "dates": "2022-06-20 to 2022-06-25", "description": "Sensors capture temperature, humidity, and pressure. Data is sent to a cloud platform for real time analysis and access."}, {"name": "Solar Powered Smart Irrigation System", "type": "Project", "dates": "2022-04-01 to 2022-04-15", "description": "Soil moisture sensors automate irrigation, powered by solar energy for sustainable agriculture."}], "education": [{"degree": "BSc in Electrical and Electronics Engineering", "school": "Manarat International University", "location": "Dhaka, Bangladesh", "start": "2019-01-01", "end": "2024-09-07", "grade": "", "url": "https://manarat.ac.bd/"}, {"degree": "Higher Secondary Certificate", "school": "Dhaka Model College", "location": "Dhaka, Bangladesh", "start": "2016-06-01", "end": "2018-07-19", "grade": "", "url": "https://dmdcollege.edu.bd/"}, {"degree": "Secondary School Certificate", "school": "Bangladesh Muktizodha Ucha Bidyalay", "location": "Dhaka, Bangladesh", "start": "2014-01-01", "end": "2016-05-11", "grade": "", "url": "https://www.bmhsdhaka.edu.bd/"}], "skills": {"core": ["Electronic engineering", "Embedded systems", "Internet of Things", "Circuit design", "Power distribution", "Troubleshooting", "PLC programming", "PCB design", "Data analysis", "Software development"], "software": ["C++", "Python", "Linux", "JavaScript", "Machine learning", "Arduino IDE", "AutoCAD 2D and 3D", "Rhino", "Microsoft Office", "HTML", "CSS", "Object oriented programming", "GitHub"], "focus": ["Web applications", "Machine learning", "Data mining", "QA and testing", "Product development", "Data visualization"]}, "activities": [{"name": "Industrial Tour", "date": "2023-02-11", "details": "Ghorashal 108 MW Gas Power Plant, Manarat International University."}, {"name": "Industrial Tour", "date": "2022-10-09", "details": "132/33 kV Grid Substation (PGCB), Mirpur, Dhaka."}, {"name": "Workshop", "date": "2022-10-08", "details": "IoT and Embedded Systems, Manarat International University."}, {"name": "Project Showcasing Fest 2022", "date": "2022-04-17", "details": "Solar Powered Smart Irrigation System, MIU EEE Club."}, {"name": "International Fire, Safety, and Security Expo (IFSSE) 2024", "date": "2024-09-15", "details": "Participated in the 9th IFSSE 2024, Dhaka."}, {"name": "Power Gen 2024", "date": "2024-05-16", "details": "Attended the 9th POWER-GEN 2024 expo in Dhaka."}, {"name": "Workshop on A to Z of Transformer", "date": "2021-12-04", "details": "Workshop conducted by Mr. M A Masud Khan, MIU."}], "extracurricular": [{"title": "Starling Tech Inc TVC", "url": "https://youtu.be/OEyB1pi1s3E?si=qL-_HS9dvD_Gs4Ma", "thumb": "https://img.youtube.com/vi/OEyB1pi1s3E/0.jpg"}, {"title": "Hridoyer Ghran Bangla Drama", "url": "https://youtu.be/EFH-K4KALRY?si=yAAK4OywHmflx600", "thumb": "https://img.youtube.com/vi/EFH-K4KALRY/0.jpg"}, {"title": "Poribarer Bondhon Bangla Drama series", "url": "https://youtu.be/jx-kzHfzE-4?si=-s1cuXCWbVuV_8Nw", "thumb": "https://img.youtube.com/vi/jx-kzHfzE-4/0.jpg"}, {"title": "Poribar Drama Serial Ep-139", "url": "https://youtu.be/tn8qhIzwCZs?si=l_z-5OQNlDTrN8bB", "thumb": "https://img.youtube.com/vi/tn8qhIzwCZs/0.jpg"}], "languages": [{"name": "Bengali", "level": "Native"}, {"name": "English", "level": "B2"}], "hobbies": ["Photography", "Virtual geographical exploration", "Bike riding", "Traveling", "Videography", "Watching movies", "Miniature making"], "references": []}</script>
+  <script src="static/js/app.js"></script>
+</body>
+</html>
