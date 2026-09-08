@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Floppy Bird</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <h1>Floppy Bird</h1>
+    <div class="game-wrap">
+      <canvas id="game" width="420" height="640" aria-label="Floppy Bird game canvas"></canvas>
+      <div id="hud" class="hud">
+        <div class="score-row">
+          <span>Score</span>
+          <strong id="score">0</strong>
+        </div>
+        <div class="score-row">
+          <span>Best</span>
+          <strong id="best">0</strong>
+        </div>
+      </div>
+      <div id="overlay" class="overlay">
+        <p id="overlay-title">Press Space to Start</p>
+        <p class="hint">Tap, click, or press Space/Arrow Up to flap</p>
+      </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

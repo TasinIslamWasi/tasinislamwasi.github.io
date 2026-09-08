@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neon Serpent</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="hud">
+      <div class="brand">
+        <span class="logo"></span>
+        <div>
+          <h1>Neon Serpent</h1>
+          <p>Glide the grid. Chase the spark.</p>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <span class="label">Score</span>
+          <span id="score">0</span>
+        </div>
+        <div class="stat">
+          <span class="label">Best</span>
+          <span id="best">0</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="stage">
+      <div class="glow"></div>
+      <canvas id="game" width="640" height="640" aria-label="Snake game" role="img"></canvas>
+      <div id="overlay" class="overlay" aria-live="polite">
+        <div class="card">
+          <h2 id="overlayTitle">Press Space to Start</h2>
+          <p id="overlaySubtitle">Arrow keys or WASD to steer. P to pause.</p>
+          <button id="startBtn" class="btn">Start</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="mobile-controls" aria-label="Touch controls">
+      <button class="touch-btn up" data-dir="up" aria-label="Move up">▲</button>
+      <button class="touch-btn left" data-dir="left" aria-label="Move left">◀</button>
+      <button class="touch-btn down" data-dir="down" aria-label="Move down">▼</button>
+      <button class="touch-btn right" data-dir="right" aria-label="Move right">▶</button>
+      <button class="touch-btn action" data-action="start" aria-label="Start or restart">Start</button>
+      <button class="touch-btn action" data-action="pause" aria-label="Pause or resume">Pause</button>
+    </section>
+
+    <footer class="footer">
+      <div class="controls">
+        <span class="pill">Arrows / WASD</span>
+        <span class="pill">Space</span>
+        <span class="pill">P</span>
+        <span class="pill">R</span>
+      </div>
+      <div class="hint">Eat the sparks, avoid the walls and yourself.</div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
